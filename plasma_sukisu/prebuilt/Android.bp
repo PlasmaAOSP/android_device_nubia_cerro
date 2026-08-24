@@ -1,0 +1,23 @@
+// PlasmaOS: ReSukiSU ADB-root userspace (ksud + libadbroot). Manager is NOT preinstalled.
+
+cc_prebuilt_binary {
+    name: "ksud",
+    srcs: ["ksud"],
+    stem: "ksud",
+    system_ext_specific: true,
+    check_elf_files: false,
+    strip: {
+        none: true,
+    },
+}
+
+cc_prebuilt_library_shared {
+    name: "libadbroot",
+    srcs: ["libadbroot.so"],
+    system_ext_specific: true,
+    check_elf_files: false,
+    compile_multilib: "64",
+    strip: {
+        none: true,
+    },
+}

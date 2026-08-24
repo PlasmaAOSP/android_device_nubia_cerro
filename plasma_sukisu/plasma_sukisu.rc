@@ -1,0 +1,10 @@
+# PlasmaOS: apply persist.plasma.adb_root to ksud after boot / when toggled.
+# Kernel defaults adb_root ON; userspace keeps libadbroot + feature in sync.
+# Does not install Manager; does not overwrite /data/adb/ksud.
+
+on property:sys.boot_completed=1
+    exec_background -- /system_ext/bin/plasma_sukisu_sync.sh
+
+# Settings writes persist.plasma.adb_root; re-apply feature without reboot
+on property:persist.plasma.adb_root=*
+    exec_background -- /system_ext/bin/plasma_sukisu_sync.sh
